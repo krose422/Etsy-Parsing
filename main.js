@@ -39,6 +39,7 @@ items.filter( function(item) {
 // Drop answer to DOM Node
 var answer2 = document.querySelector('#answer2');
 answer2.innerText = "";
+
 itemTitles.forEach(function(itemTitles) {
   answer2.appendChild(document.createTextNode(itemTitles + '\n'));
 });
@@ -83,30 +84,32 @@ items.filter( function(item) {
 var answer4 = document.querySelector('#answer4');
 answer4.innerText = "";
 itemWood.forEach(function(itemWood) {
-  answer4.appendChild(document.createTextNode(itemWood + '\n'));
+  answer4.appendChild(document.createTextNode(itemWood + '\n' + '\n'));
 });
 
 
 // Question 5
 
-// Declare array answers will go into
-var itemsEight = [];
-var itemMaterials = [];
-
-// Find items that have more than 8 materials
-items.forEach( function(item) {
-  if (item.materials.length >= 8) {
-    itemsEight.push(item.title, item.materials);
-    // itemMaterials.push(item.materials);
-  };
-});
-
-// Drop answer to DOM Node
-// WHY CAN'T I GET IT ALL TO SHOW LIKE ANSWER
+// empty current HTML text and declare DOM Node
 var answer5 = document.querySelector('#answer5');
 answer5.innerText = "";
-itemsEight.forEach(function(itemsEight) {
-  answer5.appendChild(document.createTextNode(itemsEight + '\n'))
+
+// Create array for items with 8+ materials
+var filteredItems = items.filter(function(item) {
+  return item.materials.length >= 8;
+});
+
+// For each item in array, print out title and then their materials into DOM Node
+filteredItems.forEach (function(item) {
+  var title = item.title;
+  var materials = item.materials;
+  var length = materials.length;
+  answer5.appendChild(document.createTextNode(item.title + " has " + length + " materials\n\n"));
+
+  materials.forEach( function (material) {
+    answer5.appendChild(document.createTextNode(material + '\n'));
+  })
+  answer5.appendChild(document.createTextNode('\n'));
 });
 
 
@@ -124,8 +127,6 @@ items.forEach( function(item) {
 // Drop answer to DOM Node
 var answer6 = document.querySelector('#answer6');
 answer6.innerText = itemsMadeBySeller.length + " were made by their sellers";
-
-
 
 
 
