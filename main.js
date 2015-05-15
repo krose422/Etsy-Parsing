@@ -45,8 +45,11 @@ itemTitles.forEach(function(itemTitles) {
 
 
 // Question 3
+
+// Declare array for answer
 var itemCurrency = [];
 
+// Find item with GBP
 items.filter( function(item) {
   if (item.currency_code === "GBP") {
     itemCurrency.push(item.title);
@@ -54,11 +57,80 @@ items.filter( function(item) {
   }
 });
 
+// Drop answer to DOM Node
 var answer3 = document.querySelector('#answer3');
 answer3.innerText = "";
 itemCurrency.forEach(function(itemCurrency) {
   answer3.appendChild(document.createTextNode(itemCurrency + '\n'));
 });
+
+
+// Question 4
+
+// Declare array for answer
+var itemWood = [];
+
+// Find items made of wood
+items.filter( function(item) {
+  item.materials.forEach (function(item2) {
+    if (item2 === "wood") {
+    itemWood.push(item.title)
+    }
+  });
+});
+
+// Drop answer to DOM Node
+var answer4 = document.querySelector('#answer4');
+answer4.innerText = "";
+itemWood.forEach(function(itemWood) {
+  answer4.appendChild(document.createTextNode(itemWood + '\n'));
+});
+
+
+// Question 5
+
+// Declare array answers will go into
+var itemsEight = [];
+var itemMaterials = [];
+
+// Find items that have more than 8 materials
+items.forEach( function(item) {
+  if (item.materials.length >= 8) {
+    itemsEight.push(item.title, item.materials);
+    // itemMaterials.push(item.materials);
+  };
+});
+
+// Drop answer to DOM Node
+// WHY CAN'T I GET IT ALL TO SHOW LIKE ANSWER
+var answer5 = document.querySelector('#answer5');
+answer5.innerText = "";
+itemsEight.forEach(function(itemsEight) {
+  answer5.appendChild(document.createTextNode(itemsEight + '\n'))
+});
+
+
+// Question 6
+
+var itemsMadeBySeller = [];
+
+// Find items with "i_did" in who_made category
+items.forEach( function(item) {
+  if (item.who_made === "i_did") {
+    itemsMadeBySeller.push(item.title);
+  }
+});
+
+// Drop answer to DOM Node
+var answer6 = document.querySelector('#answer6');
+answer6.innerText = itemsMadeBySeller.length + " were made by their sellers";
+
+
+
+
+
+
+
 
 
 
